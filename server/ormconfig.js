@@ -8,7 +8,7 @@ const port = parseInt(process.env.TYPEORM_PORT, 10) || 5432;
 const database = process.env.TYPEORM_DATABASE || 'bug_tracker';
 
 // Read CA cert from environment variable
-const caCertPath = process.env.db.CA_CERT;
+const caCertPath = process.env.DB_CA_CERT;
 let caCert;
 
 if (caCertPath) {
