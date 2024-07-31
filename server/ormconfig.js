@@ -4,15 +4,14 @@ const password = process.env.TYPEORM_PASSWORD || '9592';
 const host = process.env.TYPEORM_HOST || 'localhost';
 const port = parseInt(process.env.TYPEORM_PORT, 10) || 5432;
 const database = process.env.TYPEORM_DATABASE || 'bug_tracker';
+const sslCaCert = process.env.TYPEORM_SSL_CA_CERT || '';
 
 module.exports = {
   type,
   url:
     process.env.DATABASE_URL ||
     `${type}://${username}:${password}@${host}:${port}/${database}`,
-  ssl: {
-    rejectUnauthorized: false,
-  },
+  ssl: sslCaCert ? { ca: sslCaCert } : false, // Add SSL configuration
   entities: [
     process.env.NODE_ENV === 'test'
       ? 'src/entity/**/*.ts'
